@@ -11,6 +11,9 @@ authors.workspace = true
 [dependencies]
 struppi-telnet.workspace = true
 struppi-script.workspace = true
+tokio = { version = "1", features = ["net", "io-util", "sync", "rt", "time", "macros"] }
+unicode-width = "0.2"
 
 [lints]
 workspace = true
+

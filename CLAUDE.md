@@ -44,7 +44,25 @@ highlights modify the coloured original. Every stored line keeps the raw
 text, the stripped text and the parsed styled spans.
 
 Prompts (lines without a trailing newline) are detected through telnet GA/EOR,
-with a timeout as fallback.
+with a timeout as fallback. The timeout fallback is not implemented yet; it
+only matters once prompt triggers exist (roadmap step 2). Until a prompt is
+confirmed by GA/EOR, an unterminated line simply keeps growing.
+
+Of this pipeline, step 1 of the roadmap implements only line assembly and
+appending; the stages in between arrive with step 2.
+
+### Screen and input (as built in step 1)
+
+- Layout: output area, one status row, one input row.
+- Scrolling back splits the output: history above, a separator, the live tail
+  below. The history view is anchored to a scrollback sequence number, so it
+  does not move when new output arrives.
+- A command is echoed after the pending prompt on the same line, like a
+  terminal would show it. Nothing is echoed or stored in history while the
+  server has ECHO on (password entry).
+- The size reported through NAWS is the output area, not the whole terminal.
+- Terminal input is read on a plain thread and forwarded over a channel;
+  everything else runs on a current-thread tokio runtime.
 
 ## Workspace layout
 
@@ -83,7 +101,8 @@ request. CI runs the same commands.
   scripts/evennia.sh stop
   ```
 
-  Login: `connect struppi struppi-test`. On connect Evennia offers SGA, MCCP2,
+  Then `cargo run -p struppi -- localhost 4000` and log in with
+  `connect struppi struppi-test`. On connect Evennia offers SGA, MCCP2,
   MSSP, MSDP, GMCP and MXP, and requests NAWS, TTYPE and LINEMODE.
 
 ## Conventions
@@ -127,4 +146,4 @@ attribution.
 5. **Classes and events**: classes, the full event set, tab completion.
 6. **Mapper**.
 
-Current state: project skeleton only. Next step: 1.
+Current state: step 1 is implemented (`struppi <host> <port>`). Next step: 2.

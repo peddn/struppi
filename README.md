@@ -3,7 +3,27 @@
 A modern terminal MUD client written in Rust, inspired by
 [TinTin++](https://github.com/scandum/tintin).
 
-> **Status:** early development. There is nothing to play with yet.
+> **Status:** early development. You can connect to a MUD and play by hand;
+> scripting, triggers and panes are not there yet.
+
+## Usage
+
+```sh
+struppi <host> <port>
+```
+
+| Key | Action |
+|---|---|
+| Enter | Send the input line |
+| Up / Down | Input history |
+| PgUp / PgDn | Scroll back and forward |
+| Esc | Return to live output |
+| Ctrl-C | Clear the input line; twice on an empty line: quit |
+| Ctrl-D | Quit (on an empty line) |
+| Ctrl-L | Redraw the screen |
+
+The usual line-editing keys work as well (Ctrl-A, Ctrl-E, Ctrl-U, Ctrl-K,
+Ctrl-W, Ctrl-Left, Ctrl-Right).
 
 ## What it will be
 
@@ -22,7 +42,7 @@ struppi is **not** script-compatible with TinTin++.
 
 ```sh
 cargo build --release
-cargo run -p struppi
+cargo run --release -p struppi -- <host> <port>
 ```
 
 Requires a recent stable Rust toolchain.
