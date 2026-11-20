@@ -9,7 +9,11 @@ repository.workspace = true
 authors.workspace = true
 
 [dependencies]
+anyhow = "1"
+ratatui = "0.30"
 struppi-core.workspace = true
+tokio = { version = "1", features = ["rt", "macros", "sync", "time"] }
+unicode-width = "0.2"
 
 [lints]
 workspace = true
