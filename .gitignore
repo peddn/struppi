@@ -1,0 +1,4 @@
+/target
+/.evennia
+*.log
+.DS_Store
