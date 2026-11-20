@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/peddn/struppi"
+authors = ["The struppi contributors"]
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+
+[workspace.dependencies]
+struppi-telnet = { path = "crates/struppi-telnet" }
+struppi-script = { path = "crates/struppi-script" }
+struppi-core = { path = "crates/struppi-core" }

@@ -1,0 +1,16 @@
+[package]
+name = "struppi-core"
+description = "Sessions, triggers, timers and scrollback for the struppi MUD client"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+struppi-telnet.workspace = true
+struppi-script.workspace = true
+
+[lints]
+workspace = true
